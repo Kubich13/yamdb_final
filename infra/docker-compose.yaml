@@ -8,11 +8,7 @@ services:
     env_file:
       - ./.env
   web:
-<<<<<<< HEAD
     image: kubich13/api_yamdb:latest
-=======
-    image: kubich13/yamdb_final:latest
->>>>>>> 76726d04ff05ac89d0fd6f5150b83c673a1d61d5
     restart: always
     volumes:
       - static_value:/app/static/
