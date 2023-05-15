@@ -1,4 +1,4 @@
-![yamdb_final event parameter](https://github.com/whodef/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
+![yamdb_final event parameter](https://github.com/kubich13/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
 
 # Проект YaMDb
 

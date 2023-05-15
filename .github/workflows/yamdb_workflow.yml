@@ -24,7 +24,7 @@ jobs:
         python -m flake8
         python -m pytest
 
-build_and_push_to_docker_hub:
+  build_and_push_to_docker_hub:
     name: Push image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
@@ -44,9 +44,9 @@ build_and_push_to_docker_hub:
         with:
           context: ./api_yamdb
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/yamdb_final:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/api_yamdb:latest
 
-deploy:
+  deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
     steps:
@@ -60,6 +60,7 @@ deploy:
           script: |
             sudo docker-compose stop
             sudo docker-compose rm web
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/api_yamdb:latest
             touch .env
             echo DB_ENGINE=${{ secrets.DB_ENGINE }} >> .env
             echo DB_NAME=${{ secrets.DB_NAME }} >> .env
@@ -69,7 +70,7 @@ deploy:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             sudo docker-compose up -d
           
-send_message:
+  send_message:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
@@ -78,4 +79,4 @@ send_message:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.workflow }}
+        message: ${{ github.workflow }} успешно выполнен.
