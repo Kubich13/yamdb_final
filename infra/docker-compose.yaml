@@ -11,7 +11,7 @@ services:
     image: kubich13/api_yamdb:latest
     restart: always
     volumes:
-      - static_value:/app/static/
+      - static_value:/static/
       - media_value:/app/media/
     depends_on:
       - db
